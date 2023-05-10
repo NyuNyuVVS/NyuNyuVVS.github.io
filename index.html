@@ -667,75 +667,37 @@
         // 2층배치를 해보자
         let second_zone_list = ['zone_10', 'zone_11', 'zone_12', 'zone_13', 'zone_14', 'zone_15', 'zone_16', 'zone_17',]
 
-        // fetch('/second').then(res => res.json()).then(data => {
-        //     let zones = data['result']
-        //     console.log(zones)
-        //     zones.forEach((zone) => {
-        //         let zone_name = zone['zone_number']
-        //         let rows = zone['seat_rows']
-        //         console.log(rows)
-        //         console.log(zone_name)
-        //         temp_html = ``
-        //         for (i = 0; i < 18; i++) {
+        fetch('./second_floor.json').then(res => res.json()).then(data => {
+            let zones = data['result']
+            console.log(zones)
+            zones.forEach((zone) => {
+                let zone_name = zone['zone_number']
+                let rows = zone['seat_rows']
+                console.log(rows)
+                console.log(zone_name)
+                temp_html = ``
+                for (i = 0; i < 18; i++) {
 
-        //             for (j = 0; j < 22; j++) {
-        //                 s = rows[i][j]
-        //                 if (s == "0") {
-        //                     temp_html += "⬜"
-        //                 }
-        //                 // else if (s == "VVS") {
-        //                 //     temp_html += "💎"
-        //                 // }
-        //                 else {
-        //                     temp_html += "💎"
-        //                 }
-        //             }
-        //             temp_html += `<br>`
-
-        //         }
-
-        //         $("#" + zone_name).append(temp_html)
-        //     })
-
-        // })
-        let zones = {}
-
-        fetch("./second_floor.json")
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .then(data => {zones = data;})
-        
-        console.log(zones)
-
-        zones.forEach((zone) => {
-            let zone_name = zone['zone_number']
-            let rows = zone['seat_rows']
-            console.log(rows)
-
-            console.log(zone_name)
-            temp_html = ``
-            for (i = 0; i < 18; i++) {
-
-                for (j = 0; j < 22; j++) {
-                    s = rows[i][j]
-                    if (s == "0") {
-                        temp_html += "⬜"
+                    for (j = 0; j < 22; j++) {
+                        s = rows[i][j]
+                        if (s == "0") {
+                            temp_html += "⬜"
+                        }
+                        // else if (s == "VVS") {
+                        //     temp_html += "💎"
+                        // }
+                        else {
+                            temp_html += "💎"
+                        }
                     }
-                    // else if (s == "VVS") {
-                    //     temp_html += "💎"
-                    // }
-                    else {
-                        temp_html += "💎"
-                    }
+                    temp_html += `<br>`
+
                 }
-                temp_html += `<br>`
 
-            }
+                $("#" + zone_name).append(temp_html)
+            })
 
-            $("#" + zone_name).append(temp_html)
         })
-
-
 
     </script>
 
