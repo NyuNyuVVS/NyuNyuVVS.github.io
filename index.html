@@ -381,12 +381,12 @@
             <p id="temp"></p>
         </div>
         <p style="margin-top:5px;font-size:15px;">
-            <span class="dot_old"></span> 은 공연 전에 등록해준 삐삐들   <br>   
+            <span class="dot_old"></span> 은 공연 전에 등록해준 삐삐들 <br>
             <span class="dot_new"></span> 은 공연 이후 등록 & 막상 가보니 삐삐였던 분들
         </p>
         <p style="margin-bottom:1px">💎</p>
         <br>
-        <p class="credits">Last Update: 2023.05.09. 23:59 | by 뉸뉴냔냐 - Twitter:<a
+        <p class="credits">Update: 2023.05.09. 14:00 | by 뉸뉴냔냐 - Twitter:<a
                 href="https://twitter.com/NyuNyuVVS">@NyuNyuVVS</a><br>WE MAKE BETTER! VANNER
             💙 VVS</p>
 
@@ -395,7 +395,8 @@
     <!-- 여기에 2층 입력 -->
     <div id="second-floor-left" class="second-floor">
         <h4 style="color:teal;font-weight: bold;margin-top:20px;text-align:center">✨ 푸르게 빛나는 단콘을 상상하며 ✨</h4>
-        <p style="margin-top:10px;font-size:15px;">2층에도 삐삐들이 엄청 많았어요! 그런데 2층은 등록할 수 있게 구현을 못했어요 ㅠ <br> 그래서 대신 좌석에 작은 다이아몬드를 가득 채워보았어요 :) </p>
+        <p style="margin-top:10px;font-size:15px;">2층에도 삐삐들이 엄청 많았어요! 그런데 2층은 등록할 수 있게 구현을 못했어요 ㅠ <br> 그래서 대신 좌석에 작은
+            다이아몬드를 가득 채워보았어요 :) </p>
         <div class="second-zone-flip" id="zone_17"></div>
         <div class="second-zone-flip" id="zone_16"></div>
         <div class="second-zone" id="zone_15"></div>
@@ -407,7 +408,7 @@
     </div>
 
     <br><br><br><br><br><br><br><br><br><br><br><br>
-    
+
     <br><br><br>
     <p class="credits"><b>(아무도 궁금해하지 않겠지만) 그동안의 업데이트로그:</b><br><br>
         2023.04.28. 02:30<br>최초 배포 [5월 5일 2시콘 내 옆자리엔 삐삐가?]<br><br>
@@ -499,8 +500,11 @@
         // 좌석배치도 끝
 
         fetch('/bucket').then(res => res.json()).then(data => {
+
             let rows = data['result']
             // console.log(rows.length)
+            console.log(rows)
+
             rows.forEach((a) => {
                 let concert_time = Number(a['concert_time'])
                 let row = a['y']
@@ -663,37 +667,72 @@
         // 2층배치를 해보자
         let second_zone_list = ['zone_10', 'zone_11', 'zone_12', 'zone_13', 'zone_14', 'zone_15', 'zone_16', 'zone_17',]
 
-        fetch('/second').then(res => res.json()).then(data => {
-            let zones = data['result']
-            console.log(zones)
-            zones.forEach((zone) => {
-                let zone_name = zone['zone_number']
-                let rows = zone['seat_rows']
-                console.log(rows)
-                console.log(zone_name)
-                temp_html = ``
-                for (i = 0; i < 18; i++) {
+        // fetch('/second').then(res => res.json()).then(data => {
+        //     let zones = data['result']
+        //     console.log(zones)
+        //     zones.forEach((zone) => {
+        //         let zone_name = zone['zone_number']
+        //         let rows = zone['seat_rows']
+        //         console.log(rows)
+        //         console.log(zone_name)
+        //         temp_html = ``
+        //         for (i = 0; i < 18; i++) {
 
-                    for (j = 0; j < 22; j++) {
-                        s = rows[i][j]
-                        if (s == "0") {
-                            temp_html += "⬜"
-                        }
-                        // else if (s == "VVS") {
-                        //     temp_html += "💎"
-                        // }
-                        else {
-                            temp_html += "💎"
-                        }
+        //             for (j = 0; j < 22; j++) {
+        //                 s = rows[i][j]
+        //                 if (s == "0") {
+        //                     temp_html += "⬜"
+        //                 }
+        //                 // else if (s == "VVS") {
+        //                 //     temp_html += "💎"
+        //                 // }
+        //                 else {
+        //                     temp_html += "💎"
+        //                 }
+        //             }
+        //             temp_html += `<br>`
+
+        //         }
+
+        //         $("#" + zone_name).append(temp_html)
+        //     })
+
+        // })
+        // let zones = JSON.parse($.getJSON("./second_floor.json"))
+
+        fetch("./second_floor.json")
+            .then(response => response.json())
+            .then(json => console.log(json));
+        let zones = json
+
+        zones.forEach((zone) => {
+            let zone_name = zone['zone_number']
+            let rows = zone['seat_rows']
+            console.log(rows)
+
+            console.log(zone_name)
+            temp_html = ``
+            for (i = 0; i < 18; i++) {
+
+                for (j = 0; j < 22; j++) {
+                    s = rows[i][j]
+                    if (s == "0") {
+                        temp_html += "⬜"
                     }
-                    temp_html += `<br>`
-
+                    // else if (s == "VVS") {
+                    //     temp_html += "💎"
+                    // }
+                    else {
+                        temp_html += "💎"
+                    }
                 }
+                temp_html += `<br>`
 
-                $("#" + zone_name).append(temp_html)
-            })
+            }
 
+            $("#" + zone_name).append(temp_html)
         })
+
 
 
     </script>
