@@ -698,12 +698,12 @@
         //     })
 
         // })
-        // let zones = JSON.parse($.getJSON("./second_floor.json"))
+        let zones = {}
 
         fetch("./second_floor.json")
             .then(response => response.json())
-            .then(json => console.log(json));
-        let zones = json
+            .then(json => console.log(json))
+            .then(zones = json)
 
         zones.forEach((zone) => {
             let zone_name = zone['zone_number']
