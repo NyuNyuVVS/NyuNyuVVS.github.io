@@ -703,7 +703,7 @@
         fetch("./second_floor.json")
             .then(response => response.json())
             .then(json => console.log(json))
-            .then(zones = json)
+            .then(data => {zones = data;})
 
         zones.forEach((zone) => {
             let zone_name = zone['zone_number']
