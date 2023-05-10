@@ -704,6 +704,8 @@
             .then(response => response.json())
             .then(json => console.log(json))
             .then(data => {zones = data;})
+        
+        console.log(zones)
 
         zones.forEach((zone) => {
             let zone_name = zone['zone_number']
