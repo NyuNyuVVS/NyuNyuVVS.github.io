@@ -669,9 +669,7 @@
 
         fetch("./second_floor.json")
             .then(response => response.json())
-            .then(json => console.log(json))
             .then(data => {
-          console.log(data)
             let zones = data['result']
             console.log(zones)
             zones.forEach((zone) => {
