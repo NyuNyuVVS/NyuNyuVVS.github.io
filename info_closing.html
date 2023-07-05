@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet" />
+
+    <title>삐삐는 어디에?</title>
+    <meta property="og:title" content="삐삐는 어디에?" />
+    <meta property="og:description" content="피크타임 콘서트, 내 옆자리는 과연 삐삐?" />
+    <meta property="og:image" content="https://pbs.twimg.com/media/FvdEK_saMAAJnRb?format=jpg&name=4096x4096" />
+
+    <style>
+        * {
+            font-family: "Gowun Dodum", sans-serif;
+        }
+
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .mypic {
+            background-image: linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.6)),
+                url("31_♥︎삐삐와_함께라면_언제나_행복뿐♥︎.jpg");
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            width: 60%;
+        }
+
+        .concerts {
+            flex-direction: row;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            font-size: 30px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        a {
+            margin: 5px;
+            text-align: center;
+        }
+
+        p {
+            margin-top: 5px;
+            color: rgba(83, 144, 152, 0.7)
+        }
+
+        p>a {
+            color: rgba(150, 180, 180, 0.9);
+            background-color: rgba(83, 144, 152, 0.2);
+            ;
+            text-decoration: none;
+        }
+
+        p>a:hover {
+            color: cyan;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+
+        .info {
+            width: 80%;
+            text-align: center;
+            margin: auto;
+
+        }
+
+        div.info>p {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: azure;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mypic">
+        <div class="title">
+            <h3><span style="background-color:rgba(150, 180, 180, 0.2);padding:5px">PEAKTIME 콘서트, 내 옆자리는 과연 삐삐?</span>
+            </h3>
+            <div class="info">
+
+                <h4><br><span style="background-color:rgba(150, 180, 180, 0.2);">&nbsp소개&nbsp</span></h4>
+                <p>
+                    2023년 5월 5일~7일 (잠실 실내체육관) & 6월 24~25일 (부산 KBS홀) 동안 진행된 PEAKTIME 콘서트<br><br>
+                    VANNER뿐만 아니라 SEVENUS, MONT, BAE173, DKB, 그리고 24시의 팬까지 함께하는 공연장<br>
+                    <span style="color:cyan">내 옆자리엔 혹시 삐삐일지 미리 알고 싶어 만들었던 웹서비스</span>입니다.<br>
+                    @NyuNyuVVS가 개발하고, 삐삐님들의 약 1450건(잠실콘 약 960건, 부산콘 약 480건)의 입력으로 만들어졌어요.
+                </p>
+
+                <div class="concerts">
+                    <a href="/seoul_jamsil.html" class="btn btn-outline-light">2023년 5월 5일~7일 잠실 실내체육관</a>
+                    <a href="/seoul_jamsil.html" class="btn btn-outline-light">2023년 6월 24일~25일 부산 KBS홀</a>
+
+                </div>
+
+                <h4><br><span style="background-color:rgba(150, 180, 180, 0.2);">&nbsp후기&nbsp</span></h4>
+
+                <p>
+                    ['내 옆자리엔 삐삐가']는 머릿속으로 생각만 하다 <a href="https://heeheevvs7.wixsite.com/shine-on-vanner-way/">
+
+                        #Shine_on_VANNER_way </a>합작을 보고 감동먹어 시작한, <br>제 생애 가장 많은 분들이 유용하고 또 행복하게 이용해주신
+                    결과물이였어요 :)
+                    <br>
+                    티켓을 예매한 삐삐분께는 <span style="color:cyan">다른 삐삐와 함께 할 것이라는 확신과 설렘</span>을, <br>
+                    배너 친구들에게는 <span style="color:cyan">너희를 사랑하고 아끼는 사람들이 이만큼이나 많다</span>는 걸
+                    시각적으로 보여주고 싶었답니다!
+                    <br><br>
+                    개발에 필요한 요소를 이전에 조금 사용해본 적은 있었지만, 공개 웹사이트를 만들어 배포한 건 이번이 처음이었어요! <br>제 상상보다 더 많은 삐삐분께서 너무나도 유용하게
+                    사용하시는 모습을 보고 굉장히 뿌듯했습니다!<br> 또 콘서트나 오프에서 실제로 뵈었을 때 <i>"뉸뉴..." </i>라고 하면 알아봐주셔서 조금 부끄럽고 많이 감사했습니다
+                    ㅇ~ㅇ<br><br>
+                    사실 배너가 저에겐 첫 아이돌인데, 그만큼 이전엔 느껴본 적 없는 감각부터 무언가를 시도해 볼 발걸음까지 <br>새롭고 또 다채로운 경험을 많이 선사해주는 것 같아요 ㅎㅎ
+                    참여해주고 응원해주신 모두에게 감사드립니다! <br>
+
+                    💙함께 오래오래 배너해요! (모두 고.소.사.)💙
+                    <br><br>
+                    ['내 옆자리엔 삐삐가']가 우리 모두 함께한 잠실 & 부산의 기억을 오래오래 추억하는데 도움이 되길 바라며...<br>
+                    2023년 7월 5일 VVS 뉸뉴냔냐 드림
+                </p>
+
+            </div>
+
+            <p>Made & Archived by <a href="https://twitter.com/NyuNyuVVS">@NyuNyuVVS</a> & | Last Update: 2023.07.05. <a
+                    href="index.html">첫페이지로 돌아가기 </a></p>
+        </div>
+
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet" />
+
+
+    <link rel="icon" href="https://images.emojiterra.com/google/noto-emoji/unicode-15/color/svg/1f48e.svg">
+    <title>삐삐는 어디에?</title>
+    <meta property="og:title" content="부산콘(까쥐) 삐삐는 어디에?" />
+    <meta property="og:description" content="부산 피크타임 콘서트에서도, 내 옆자리는 과연 삐삐?" />
+    <meta property="og:image"
+        content="https://post-phinf.pstatic.net/MjAyMzA1MTNfODEg/MDAxNjgzOTczNzUwNzI5.ZtHd42awHr7zlMYJ4KAJNd3PCEfhe5UB6SIsE7eBy60g.K6PdFvpDgzhO19RQtBYiy4kUQ55IYJHdG6UZUTIsRbcg.JPEG/20_%E2%99%A5%EF%B8%8EVANNER_ZZANG%E2%99%A5%EF%B8%8E.jpg?type=w1200" />
+
+    <style>
+        * {
+            font-family: "Gowun Dodum", sans-serif;
+        }
+
+        .mypic {
+            width: 100%;
+            min-height: 550px;
+
+            background-image: linear-gradient(0deg,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.6)),
+                url("./busan_header.jpg");
+            background-position: center;
+            position: relative;
+            background-size: cover;
+
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: end;
+        }
+
+        .mypic>div.header {
+            font-size: 45px;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: rgba(0, 0, 10, 0.5);
+        }
+
+        .mypic>div.header>a {
+            margin: 3px;
+        }
+
+        .mybox {
+            width: 95%;
+            max-width: 900px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px 0px lightblue;
+            margin: 20px auto;
+            align-items: center;
+            text-align: center;
+        }
+
+        .mybox>li {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+
+            margin-bottom: 10px;
+            min-height: 48px;
+        }
+
+        .mybox>div>h6 {
+            max-width: 75%;
+            font-size: 20px;
+            font-weight: bold;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            margin-bottom: 10px;
+            color: rgb(50, 80, 120);
+        }
+
+        .mybox>button {
+            max-width: 100%;
+            font-size: 20px;
+            font-weight: 500;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+            text-align: center;
+            float: none !important;
+        }
+
+
+
+        .mybox>div>div {
+            width: 100%;
+            display: inline-block;
+            border: none;
+            text-align: center;
+            font-size: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .mybox>div>p {
+            max-width: 75%;
+            font-size: 12px;
+            font-weight: bold;
+            color: rgb(200, 80, 80);
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+            margin-bottom: 20px;
+        }
+
+
+        .mybox>div>ul {
+            max-width: 75%;
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(17, 32, 92);
+            text-align: center;
+            margin: auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .temp_style {
+            max-width: 75%;
+            font-size: 20px;
+            font-weight: auto;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            color: rgb(50, 80, 80);
+        }
+
+        .credits {
+            font-size: 12px;
+            float: center;
+            margin-top: 5px;
+            font-weight: light;
+            text-align: center;
+            color: rgb(42, 68, 98);
+        }
+
+        .dot_old {
+            height: 15px;
+            width: 15px;
+            background-color: rgb(120, 150, 180);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot_new {
+            height: 15px;
+            width: 15px;
+            background-color: rgb(197, 227, 227);
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="mypic">
+        <div class="header">
+            <h1>세에사앙해에 부산콘까쥐 ^~^</h1>
+            <h6>✨ 2023.06.24 - 06.25 ✨</h6>
+            <a href="./seoul_jamsil.html" class="btn btn-secondary btn-sm">서울콘 보러가기</a><a href="./index.html"
+                class="btn btn-secondary btn-sm">메인으로 돌아가기</a>
+        </div>
+    </div>
+
+
+    <div class="mybox" id="bucket-list">
+
+        <h4 style="color:teal;font-weight: bold;margin-top:15px;">✨ 배너와 삐삐가 만나는 날은 앞으로도 계속 ✨</h4>
+        <h6 style="color:SteelBlue;margin-bottom:15px;font-size: 18px;">무대 위에서 언제나 행복하게 빛날 너희를 오래오래 응원할게</h6>
+        <p style="font-size: 14px;">by @NyuNyuVVS & 푸른 별처럼 가득한 삐삐들</p>
+
+        <br>
+
+
+        <div class='BTN_container'>
+            <h6>붓싼 PEAKTIME 콘서트 삐삐들은..! (click)</h6>
+            <div><button onclick="concert_time_change(0)" class="btn btn-outline-secondary btn-lg active">6월 24일
+                    (토)</button>
+                <button onclick="concert_time_change(1)" class="btn btn-outline-secondary btn-lg active">6월 25일
+                    (일)</button>
+
+            </div>
+        </div>
+
+
+        <!-- 차트 그리기 -->
+        <div id="results_container">
+            <canvas id="vvs_scatter" style="width:100%;max-width:900px"></canvas>
+
+        </div>
+        <div id="vvs_count">
+            <p id="temp"></p>
+        </div>
+        <p style="margin-top:5px;font-size:15px;">
+            <span class="dot_old"></span> 은 공연 전에 등록해준 삐삐들 <br>
+            <span class="dot_new"></span> 은 공연 이후 등록 & 막상 가보니 삐삐였던 분들
+        </p>
+        <br>
+    </div>
+
+
+    <p class="credits">Update: 2023.07.05. 03:00 PM <br> Website by <a
+            href="https://twitter.com/NyuNyuVVS">@NyuNyuVVS</a> | VVS logo by <a
+            href="https://twitter.com/gondubakjil/">@gondubakjil</a><br>WE MAKE BETTER! VANNER
+        💙 VVS<br><img src="./VVS_logo.png" style="width: 100px;">
+
+    </p>
+    <br><br><br>
+
+
+    <p class="credits"><b>(아무도 궁금해하지 않겠지만) 그동안의 업데이트로그:</b><br><br>
+        2023.05. <br> [부산 픽탐콘 내 옆자리엔 삐삐가?] 대충 개발 완료<br><br>
+        2023.06.03 11:00 <br> 통로 관련 좌석배치도 버그 수정 <br><br>
+        2023.06.06 17:00 <br> 서버가동 시작, 베타버전 배포 <br><br>
+        2023.06.15 01:00 <br> 정식 배포 [부산 픽탐콘 내 옆자리엔 삐삐가?] <br><br>
+        2023.06.28 15:00 <br> 사전 입력 종료, 사후 입력 활성화 <br><br>
+        2023.07.05 15:00 <br> 사후입력 종료, 아카이빙 웹사이트로 이사감, 디자인 정비 (끝)
+    </p>
+
+
+
+
+    <script>
+        // 좌석배치도용 array
+        // 건드리지 말것!!!!
+        // 광역변수 - default 토요일
+        let concertButton_index = 0;
+
+        // ------------1층-------------
+        // ------------1층-------------
+        let noSeat = []
+        let usedSeat_noSeat = []
+        // 미입력좌석 array
+        let noInfoSeat = [[], []]
+        // 미입력좌석 대조용 array
+        let usedSeat_byConcert = [[], []]
+        // 입력좌석용 array
+        let vvsSeat = [[], []]
+        // 사후입력 여는 경우 활용
+        let vvsSeat_late = [[], []]
+        // 좌석배치도 - 건드리지 말것!!!!
+        for (i = 9; i < 41; i = i + 10) {
+            for (j = 1; j < 25; j++) {
+                temp = { x: i, y: j, seat: "no_seat" }
+                noSeat.push(temp)
+                usedSeat_noSeat.push(i + "_" + j)
+            }
+        }
+        for (i = 0; i < 48; i++) {
+            for (j = 13; j < 14; j++) {
+                temp = { x: i, y: j, seat: "no_seat" }
+                noSeat.push(temp)
+                usedSeat_noSeat.push(i + "_" + j)
+            }
+        }
+
+        // ------------2층-------------
+        // ------------2층-------------
+        let noSeat_2 = []
+        let usedSeat_noSeat_2 = []
+        // 미입력좌석 array
+        let noInfoSeat_2 = [[], []]
+        // 미입력좌석 대조용 array
+        let usedSeat_byConcert_2 = [[], []]
+        // 입력좌석용 array
+        let vvsSeat_2 = [[], []]
+        // 사후입력 여는 경우 활용
+        let vvsSeat_late_2 = [[], []]
+        // 좌석배치도 - 건드리지 말것!!!!
+        zone_div = [10, 21, 34, 45]
+        zone_div.forEach((r) => {
+            for (j = 1; j < 8; j++) {
+                temp = { x: r, y: j, seat: "no_seat" }
+                noSeat_2.push(temp)
+                usedSeat_noSeat_2.push(i + "_" + r)
+            }
+        })
+        // console.log(noSeat_2, usedSeat_noSeat_2)
+        // 건드리지 말것!!!!
+        // 좌석배치도 끝
+
+        fetch("./busan_seat.json")
+            .then(response => response.json())
+            .then(data => {
+
+                let rows = data['result']
+                // console.log(rows.length)
+                // console.log(rows)
+
+                rows.forEach((a) => {
+                    // console.log(a)
+                    let concert_time = Number(a['concert_time'])
+                    let real_seat = a['real_seat']
+
+                    let floor = a['floor']
+                    let zone = a['zone']
+                    let row = a['y']
+                    let seat_no = a['x']
+                    let late = a['late']
+
+                    // let late = a['heat']
+                    if (!isNaN(concert_time) && !real_seat.includes("선택") && late == 0 && floor == 1) {
+                        let temp = { x: seat_no, y: row, seat: real_seat }
+                        // console.log(concert_time, real_seat)
+                        vvsSeat[concert_time].push(temp)
+                        usedSeat_byConcert[concert_time].push(seat_no + "_" + row)
+                    }
+                    else if (!isNaN(concert_time) && !real_seat.includes("선택") && late == 0 && floor == 2) {
+                        let temp = { x: seat_no, y: row, seat: real_seat }
+                        // console.log(concert_time, real_seat)
+                        vvsSeat_2[concert_time].push(temp)
+                        usedSeat_byConcert_2[concert_time].push(seat_no + "_" + row)
+                    }
+                    else if (!isNaN(concert_time) && !real_seat.includes("선택") && late == 509 && floor == 1) {
+                        let temp = { x: seat_no, y: row, seat: real_seat }
+                        console.log(concert_time, real_seat)
+                        vvsSeat_late[concert_time].push(temp)
+                        usedSeat_byConcert[concert_time].push(seat_no + "_" + row)
+                    }
+                    else if (!isNaN(concert_time) && !real_seat.includes("선택") && late == 509 && floor == 2) {
+                        let temp = { x: seat_no, y: row, seat: real_seat }
+                        console.log(concert_time, real_seat)
+                        vvsSeat_late_2[concert_time].push(temp)
+                        usedSeat_byConcert_2[concert_time].push(seat_no + "_" + row)
+                    }
+                })
+
+                for (c = 0; c < 2; c++) {
+                    // 1층
+                    for (i = 0; i < 48; i++) {
+                        for (j = 1; j < 25; j++) {
+                            verif = i + "_" + j
+                            if (!usedSeat_noSeat.includes(verif) && !usedSeat_byConcert[c].includes(verif)) {
+                                // console.log("vacant!")
+                                temp = { x: i, y: j, seat: "vacant" }
+                                noInfoSeat[c].push(temp)
+                            }
+                        }
+                    }
+                    // 2층
+                    for (i = 0; i < 56; i++) {
+                        for (j = 1; j < 8; j++) {
+                            verif = i + "_" + j
+                            if (!usedSeat_noSeat_2.includes(verif) && !usedSeat_byConcert_2[c].includes(verif)) {
+                                // console.log("vacant!")
+                                temp = { x: i, y: j, seat: "vacant" }
+                                noInfoSeat_2[c].push(temp)
+                            }
+                        }
+                    }
+                }
+                // console.log(vvsSeat, noInfoSeat)
+                // console.log(vvsSeat[concertButton_index])
+            })
+
+        function chartDisplay(c) {
+            let vvsChart = new Chart("vvs_scatter", {
+                type: "scatter",
+                data: {
+                    datasets: [
+                        {
+                            // 빈좌석
+                            label: "vacant",
+                            pointRadius: 2,
+                            pointBackgroundColor: "rgb(220,220,220)",
+                            data: usedSeat_byConcert[c]
+                        },
+                        {
+                            // 비좌석
+                            label: "no_seat",
+                            pointRadius: 13,
+                            pointStyle: 'rect',
+                            pointBackgroundColor: "rgb(100,100,100)",
+                            data: noSeat
+                        },
+                        {
+                            // 삡비들
+                            label: "VVS_early",
+                            pointRadius: 8,
+                            hoverRadius: 10,
+                            pointBackgroundColor: "rgb(120,150,180)",
+                            data: vvsSeat[c]
+                        },
+                        {
+                            // 늦은 삡비들
+                            label: "VVS_late",
+                            pointRadius: 8,
+                            hoverRadius: 10,
+                            pointBackgroundColor: "rgb(197, 227, 227)",
+                            data: vvsSeat_late[c]
+                        }]
+
+                },
+                options: {
+
+                    legend: { display: false },
+                    scales: {
+                        xAxes: [
+                            {
+                                position: 'top',
+                                ticks: {
+                                    min: 0,
+                                    max: 48,
+                                    display: false
+                                }
+                            }],
+                        yAxes: [
+                            {
+
+                                ticks: {
+                                    min: 1,
+                                    max: 25,
+                                    reverse: true,
+                                    display: false
+                                }
+                            },],
+                    },
+
+                    plugins: {
+                        datalabels: {
+                            backgroundColor: '#ab47bc',
+                            borderRadius: 4,
+                            color: '#4e342e',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) { return context.toString(); },
+                            padding: 1,
+                            align: 'end'
+                        }
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+
+
+                            title: (tooltipItem, data) => { },
+
+
+                            label: (tooltipItem, data) => {
+                                let EL = data.datasets[tooltipItem.datasetIndex].label
+
+                                try {
+                                    if (EL == "VVS_early") {
+                                        let real_seat = data['datasets'][2]['data']
+                                        let dataIndex = tooltipItem['index']
+                                        console.log(data.datasets[2]['data'][dataIndex])
+                                        return real_seat[dataIndex]['seat'];
+                                    }
+                                    else if (EL == "VVS_late") {
+                                        let real_seat = data['datasets'][3]['data']
+                                        let dataIndex = tooltipItem['index']
+                                        console.log(data.datasets[3]['data'][dataIndex])
+                                        return real_seat[dataIndex]['seat'];
+                                    }
+                                    // console.log(data)
+
+                                }
+                                catch {
+                                    return NaN;
+                                }
+
+                            },
+
+
+                        }
+                    }
+
+                }
+            });
+
+
+            // 2층 도전
+            let vvsChart2 = new Chart("vvs_scatter2", {
+                type: "scatter",
+                data: {
+                    datasets: [
+                        {
+                            // 빈좌석
+                            label: "vacant",
+                            pointRadius: 2,
+                            pointBackgroundColor: "rgb(220,220,220)",
+                            data: usedSeat_byConcert_2[c]
+                        },
+                        {
+                            // 비좌석
+                            label: "no_seat",
+                            pointRadius: 13,
+                            pointStyle: 'rect',
+                            pointBackgroundColor: "rgb(100,100,100)",
+                            data: noSeat_2
+                        },
+                        {
+                            // 삡비들
+                            label: "VVS_early",
+                            pointRadius: 8,
+                            hoverRadius: 10,
+                            pointBackgroundColor: "rgb(120,150,180)",
+                            data: vvsSeat_2[c]
+                        },
+                        {
+                            // 늦은 삡비들
+                            label: "VVS_late",
+                            pointRadius: 8,
+                            hoverRadius: 10,
+                            pointBackgroundColor: "rgb(197, 227, 227)",
+                            data: vvsSeat_late_2[c]
+                        }]
+
+                },
+                options: {
+
+                    legend: { display: false },
+                    scales: {
+                        xAxes: [
+                            {
+                                position: 'top',
+                                ticks: {
+                                    min: 0,
+                                    max: 56,
+                                    display: false
+                                }
+                            }],
+                        yAxes: [
+                            {
+
+                                ticks: {
+                                    min: 1,
+                                    max: 8,
+                                    reverse: true,
+                                    display: false
+                                }
+                            },],
+                    },
+
+                    plugins: {
+                        datalabels: {
+                            backgroundColor: '#ab47bc',
+                            borderRadius: 4,
+                            color: '#4e342e',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function (value, context) { return context.toString(); },
+                            padding: 1,
+                            align: 'end'
+                        }
+                    },
+                    tooltips: {
+                        enabled: true,
+                        callbacks: {
+
+
+                            title: (tooltipItem, data,) => {
+
+                            }, label: (tooltipItem, data) => {
+
+
+                                let EL = data.datasets[tooltipItem.datasetIndex].label
+
+                                try {
+                                    if (EL == "VVS_early") {
+                                        let real_seat = data['datasets'][2]['data']
+                                        let dataIndex = tooltipItem['index']
+                                        console.log(data.datasets[2]['data'][dataIndex])
+                                        return real_seat[dataIndex]['seat'];
+                                    }
+                                    else if (EL == "VVS_late") {
+                                        let real_seat = data['datasets'][3]['data']
+                                        let dataIndex = tooltipItem['index']
+                                        console.log(data.datasets[3]['data'][dataIndex])
+                                        return real_seat[dataIndex]['seat'];
+                                    }
+                                    // console.log(data)
+
+                                }
+                                catch {
+                                    return NaN;
+                                }
+
+
+
+                            },
+
+
+                        }
+                    }
+
+                }
+            });
+
+
+
+        }
+
+        function concert_time_change(c) {
+            let concert_time = Number(c)
+            concertButton_index = concert_time
+            resetCanvas();
+            chartDisplay(concertButton_index)
+            let prev = vvsSeat[concertButton_index].length
+            let post = vvsSeat_late[concertButton_index].length
+            let prev2 = vvsSeat_2[concertButton_index].length
+            let post2 = vvsSeat_late_2[concertButton_index].length
+            let temp_html = `<strong id="temp" class="temp_style">💠모두 <b style="color:teal">${prev + post + prev2 + post2}명</b>의 삐삐분께서 등록해주셨어요!💠</strong>`
+            $('#temp').remove();
+            $('#vvs_count').append(temp_html)
+            // console.log(vvsSeat)
+        }
+
+        function resetCanvas() {
+            $('#vvs_scatter').remove(); // 1층용 canvas
+            $('#first_floor_indicator').remove(); // 1층용 canvas
+            $('#results_container').append('<ul style="" id="first_floor_indicator">1층 (무대 방향) <br> <i style="letter-spacing:0.8em;">[가나다라마]</i></ul>')
+            // $('#results_container').append('<ul style="letter-spacing:1em" id="first_floor_indicator"> 가 나 다 라 마 </ul>')
+            $('#results_container').append('<canvas id="vvs_scatter" style="width:100%;max-width:900px"></canvas>');
+            $('#second_floor_indicator').remove(); // 2층용 canvas
+            $('#vvs_scatter2').remove(); // 2층용 canvas
+            $('#results_container').append('<ul style="margin-top:10px" id="second_floor_indicator">2층<br> <i style="letter-spacing:1em;">[GHIJK]</i></ul>')
+            $('#results_container').append('<canvas id="vvs_scatter2" style="width:100%;height:100%;max-width:900p;margin-bottom:30px;"></canvas>');
+
+
+        };
+    </script>
+
+</body>
+
+</html>
